@@ -41,7 +41,7 @@ class ElementalMotors
     void frenarIzquierdo();
   private:
     void izqAd(byte speed); 	// funciones primitivas para mover los motores
-    void izqAt(byte speed); 
+    void izqAt(byte speed); 	
     void derAd(byte speed);
     void derAt(byte speed);
 };

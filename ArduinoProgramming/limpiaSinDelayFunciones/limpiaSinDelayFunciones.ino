@@ -32,6 +32,22 @@ void loop() {
   estado_ant = lectura;
 }
 
+int verificarPos(int sentido_ant, int pos)
+{
+  if(pos == 180)
+  {
+    return 0;
+  }
+  else if(pos == 0)
+  {
+    return 1;
+  }
+  else
+  {
+    return sentido_ant;
+  }
+}
+
 // subrutinas
 void detectarCambioBoton(int lectura)
 {
@@ -79,18 +95,12 @@ void actualizarServo(void)
       if(sentido == 1) // adelante
       {
         pos++;
-        if(pos == 180)
-        {
-          sentido = 0;
-        }
+        sentido = verificarPos(sentido, pos);
       }
       else 
       {
         pos--;
-        if(pos == 0)
-        {
-          sentido = 1;
-        }
+        sentido = verificarPos(sentido, pos);
       }
       limpiador.write(pos);
     }

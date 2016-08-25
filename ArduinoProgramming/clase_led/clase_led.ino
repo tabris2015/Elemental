@@ -27,14 +27,7 @@ public:
 		if((tiempo - tiempo_ant) > intervalo)
 		{
 			tiempo_ant = tiempo;
-			if(estado == 0)
-			{
-				estado = 1;
-			}
-			else
-			{
-				estado = 0;
-			}
+			estado = !estado;
 			digitalWrite(ledPin, estado);
 		}
 	}

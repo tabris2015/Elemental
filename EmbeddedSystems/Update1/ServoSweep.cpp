@@ -1,21 +1,20 @@
 #include "Arduino.h"
 #include "ServoSweep.h"
 
-	ServoSweep::ServoSweep(int pin, long inter)
+	ServoSweep::ServoSweep(long inter)
 	{
-		servoPin = pin;
-		servo.attach(servoPin);
 		interval = inter;
 		position = 0;
 		sentido = 0;
 		prev_time = 0;
 	}
-	void ServoSweep::Update()
+	void ServoSweep::Update(Servo * servo)
 	{
 		long cTime = millis();
 		if((cTime - prev_time) > interval)
 		{
 			prev_time = cTime;
+			servo->write(position);
 			if(sentido)
 			{
 				position++;
@@ -26,7 +25,9 @@
 				position--;
 				if(position < 0) sentido = 1;
 			}
-			servo.write(position);
+			Serial.println("actualiza servo");
+      		Serial.println(position);
+      		Serial.println(sentido);
 		}	
 	}
 	void ServoSweep::SetInterval(long inter)

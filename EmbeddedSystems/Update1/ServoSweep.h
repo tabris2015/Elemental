@@ -9,10 +9,10 @@ class ServoSweep
 	int position;
 	int sentido;
 	long prev_time;
-	Servo servo;
+	//Servo servo;
 public:
-	ServoSweep(int pin, long inter);
-	void Update();
+	ServoSweep(long inter);
+	void Update(Servo * servo);
 	void SetInterval(long inter);
 	long GetInterval();
 };

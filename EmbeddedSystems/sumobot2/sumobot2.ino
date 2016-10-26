@@ -53,9 +53,8 @@ void buscar(void)
 {
 	Serial.println("entrando al estado BUSCANDO");
 	// secuencia
-
 	carro.detener();
-	carro.motorIzquierdo(200);
+	carro.conducir(100);
 }
 
 // estado ATACANDO
@@ -140,7 +139,7 @@ int leerEntradas(void)
 	else if(s_izq || s_der) B_SNS = 1;
 	
 	if(s_dist == 1) O_SNS = 1;
-	
+	else O_SNS = 0;
 	static char comando;
 	if(Serial.available())
 	{

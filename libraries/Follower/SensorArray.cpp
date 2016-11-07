@@ -38,6 +38,8 @@ void SensorArray::readSensors(uint8_t * values)
 	int accum = 0;
 
 	_data = PINC;
+	_data |= (analogRead(A6) > 512) << 6;
+	_data |= (analogRead(A7) > 512) << 7;
 	_density = 0;
 	uint8_t i;
 	for(i = 0; i < 8; i++)

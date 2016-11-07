@@ -47,6 +47,22 @@ void Motors::drive(int16_t l_speed, int16_t r_speed)
 		rightBackward((uint8_t)abs(r_speed));	
 	}	
 }
+
+void Motors::differentialDrive(int16_t linear, int16_t angular)
+{
+    float v_right = (float)linear - 0.7 * (float)angular;
+    float v_left = (float)linear + 0.7 * (float)angular;
+    float mult = 0.5;
+    #ifdef DEBUG
+    Serial.print("l: ");
+    Serial.print(v_left);
+    Serial.print(" r: ");
+    Serial.println(v_right);	
+    #endif
+    drive((int16_t)(v_left * mult), (int16_t)(v_right * mult));
+
+}
+
 void Motors::pivot(int16_t speed)
 {
 	if(speed > 0)

@@ -56,8 +56,37 @@ public:
 class pid
 {
 public:
-	pid();
-	/* data */
+	pid(float * input, float * output, float * setpoint,
+		float inKp, float inKi, float inKd);
+	int16_t Compute();
+	void SetLimits(float nMin, float nMax);
+	void SetParameters(float nKp, float nKi, float nKd);
+	void SetDirection(uint16_t dir);
+	void SetSampleTime(uint16_t time);
+
+	float getKp();
+	float getKi();
+	float getKd();
+
+private:
+	void Init();
+
+	float * userInput;
+	float * userOutput;
+	float * userSetpoint;
+	
+	float kp;
+	float ki;
+	float kd;
+
+	float ITerm;
+	float lastInput;
+
+	uint16_t sampleTime;
+	float max_out;
+	float min_out;
+	uint16_t max_out_int;
+	uint16_t min_out_int;
 };
 #endif
  					

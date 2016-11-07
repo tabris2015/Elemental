@@ -54,7 +54,7 @@ void buscar(void)
 	Serial.println("entrando al estado BUSCANDO");
 	// secuencia
 	carro.detener();
-	carro.conducir(100);
+	carro.conducir(150);
 }
 
 // estado ATACANDO
